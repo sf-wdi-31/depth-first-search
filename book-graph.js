@@ -63,13 +63,13 @@ var pg255 = new CYOANode("pg255 text", [pg204, pg260], 255);
 var pg216 = new CYOANode("pg216 text", [pg204, pg220], 216);
 var pg201 = new CYOANode("pg201 text", [pg255, pg216], 201);
 
-//			     ------- 
+//			 ------- 
 //			/		\
-// 		216  		          220W
+// 		216  		  220W
 // 	/ 		\		/ 
-// 201 			       204  
+// 201 		   204  
 // 	\		/		\
-// 		255 		         234W	
+// 		255 		  234W	
 // 			\
 // 		  	  260L
 

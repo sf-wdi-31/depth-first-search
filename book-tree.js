@@ -44,11 +44,11 @@ var pg43 = new CYOANode("pg43 text", [pg67, pg13]);
 var pg89 = new CYOANode("pg89 text -- You have died.", []);
 var pg1 = new CYOANode("pg1 text -- Once upon a time...", [pg43, pg89]);
 var book = new CYOATree(pg1);
-// 	   89L
+// 	  89L
 // 	/ 
-// 1 		  67W
-// 	\	/
-// 	   43 
+// 1      67W
+// 	\ 	/
+// 	  43 
 // 		\
 // 	  	  13L
 
