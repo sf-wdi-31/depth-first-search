@@ -34,9 +34,21 @@ PLEASE DO NOT CODE UNLESS A CHALLENGE SPECIFICALLY INSTRUCTS YOU TO
   ```
 
 
-1. Create a trie for the following word list: ["hey", "hello", "howdy", "g'day"].
+1. Create a trie for the following word list: ["hey", "hi"].
+
+```
+        <start>
+           |
+           H
+         /   \
+        E     I <end of word>
+       /
+      Y <end of word>
+```
 
 1. Add the phrase "hello, govnuh" to your trie from above. 
+  
+  *Answer omitted for space.*
 
 1. In plain and in n-ary trees, the number of nodes and the amount of children allowed per node determine the tree's minimum possible height. What determines the minimum possible height of a trie?  
 
