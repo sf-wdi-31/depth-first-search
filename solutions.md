@@ -71,14 +71,24 @@ PLEASE DO NOT CODE UNLESS A CHALLENGE SPECIFICALLY INSTRUCTS YOU TO
   
    ```python
    def has_key(tree, key):
+     # start at root
      current_node = tree
+
+     # go down the tree until we can't any more
      while current_node is not None:
+
+       # each time we go down, move left if we're looking for a smaller key...
        if current_node.key > key:
          current_node = current_node.left
+       # ... or move right if we're looking for a larger key
        else if current_node.key < key:
          current_node = current_node.right
+       # ... or if we've found the key, we're done!
        else:
          return true
+
+     # if we get to the bottom without finding our key, 
+     # it must not be in the tree
      return false
   ```
 
