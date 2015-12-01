@@ -35,8 +35,26 @@ class Tree
   ##
   # Searches through all nodes of the tree, spreading 
   # outward from the root. Looks for any node with key equal
-  # to the +target_key+ param. Returns nil if no such node is found.
+  # to the +target_key+ param.
   def breadth_first_search(target_key)
+    queue = [self]
+    while !queue.empty?
+      # print out key of each node in queue to help with debugging
+      p queue.map { |node| node.key }
+
+      # remove the first node from the queue
+      current = queue.shift
+      # check if this node has the right key (and return if so)
+      if current.key == target_key
+        return current
+      end
+      # add this node's children to the queue
+      queue = queue + current.children
+    end
+
+    # We finished the while loop (went through all nodes)
+    # without finding the node we wanted.
+    # implicitly return nil
     nil
   end
 

@@ -1,32 +1,76 @@
 // This object type represents a tree
 // where each node has an array of children.
 
-var Tree = function (key, children){
+var TreeNode = function (key, children){
 	this.key = key; 	
-	this.children = children || [];	// an array, holds the Trees that we can go to directly from here
+	this.children = children || [];	// an array, holds the TreeNodes that we can go to directly from here
 };
 
 // Searches through all nodes of the tree, spreading 
 // outward from the root. Looks for any node with key equal
 // to the targetKey param. Returns null if no such node is found.
-Tree.prototype.breadthFirstSearch = function(targetKey){
+TreeNode.prototype.breadthFirstSearch = function(targetKey){
+	// set up the queue of nodes to check 
+	var queue = [this]; 
+	var current;
+	while (queue.length !== 0){
+		// print out key of each node in queue to help with debugging
+		console.log("queue: ", queue.map(function(node){
+			return node.key;
+		}));
+
+		current = queue.shift(); // remove and return first element of array
+
+		// check if current node key matches the target key
+		if (current.key == targetKey){
+			return current;
+		} else {
+			if (current.children){
+				queue = queue.concat(current.children);
+			}
+		}
+	}
+	// we've gone through the entire tree without finding the key
 	return null;
 };
 
 
-// Returns an array containing all nodes for which 
-// the selectionFunction returns true.
-Tree.prototype.breadthFirstSearchAll = function(selectionFunction){
-	return [];
+// Return all nodes for which the selectionFunction returns true.
+TreeNode.prototype.breadthFirstSearchAll = function(selectionFunction){
+	// set up the queue of nodes to check 
+	var queue = [this]; 
+	// set up output array of nodes that match properties
+	var output = [];
+	var current;
+	while (queue.length !== 0){
+		// print out key of each node in queue to help with debugging
+		console.log("queue: ", queue.map(function(node){
+			return node.key;
+		}));
+
+		current = queue.shift(); // remove and return first element of array
+
+		// check if selectionFunction returns true for current node 
+		if (selectionFunction(current)){
+			output.push(current);
+		} else {
+			if (current.children){
+				queue = queue.concat(current.children);
+			}
+		}
+	}
+	return output;
 };
 
-var myTree = new Tree('A'),
-	bNode = new Tree('B'),
-	cNode = new Tree('C'),
-	dNode = new Tree('D'),
-	eNode = new Tree('E'),
-	fNode = new Tree('F'),
-	gNode = new Tree('G');
+
+
+var myTree = new TreeNode('A'),
+	bNode = new TreeNode('B'),
+	cNode = new TreeNode('C'),
+	dNode = new TreeNode('D'),
+	eNode = new TreeNode('E'),
+	fNode = new TreeNode('F'),
+	gNode = new TreeNode('G');
 
 myTree.children.push(bNode, cNode);
 bNode.children.push(dNode, eNode, fNode);
