@@ -83,7 +83,7 @@ e_node.children << g_node
 #   \
 #     C 
 
-
+puts "\n-- expect node E --"
 e_result = my_tree.breadth_first_search('E')
 p e_result
 # ["A"]
@@ -93,6 +93,7 @@ p e_result
 # ["E", "F"]
 # #<Tree:0x007fee51891dd0 @key="E", @children=[#<Tree:0x007fee51891ce0 @key="G", @children=[]>]>
 
+puts "\n-- expect node G --"
 g_result = my_tree.breadth_first_search('G')
 p g_result
 # ["A"]
@@ -104,6 +105,8 @@ p g_result
 # ["G"]
 # #<Tree:0x007fe77c29dae0 @key="G", @children=[]>
 
+
+puts "\n-- expect nil -- "
 h_result = my_tree.breadth_first_search('H')
 p h_result
 # ["A"]

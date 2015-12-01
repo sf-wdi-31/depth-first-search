@@ -21,7 +21,7 @@ Breadth First Search spreads like a mold across the tree or graph, moving outwar
 	* given a tree/node, get the key of the node with `.key`
 	* given a tree/node, get the children of the node with `.children`
 
-1. In either "tree.js" or "tree.rb", code up your breadth first search function.
+1. Copy the starter code in either `tree.js` or `tree.rb`.  Code up your breadth first search function in one of these files. There are informal "tests" at the bottom of each file that show what the output should be.  Run `node tree.js` or `ruby tree.rb` to see these tests work on your file. 
 
 1. How would you modify your breadth first search function to work on a binary search tree? 
 

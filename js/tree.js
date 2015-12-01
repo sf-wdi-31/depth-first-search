@@ -20,13 +20,15 @@ Tree.prototype.breadthFirstSearchAll = function(selectionFunction){
 	return [];
 };
 
-var myTree = new Tree('A'),
-	bNode = new Tree('B'),
-	cNode = new Tree('C'),
-	dNode = new Tree('D'),
-	eNode = new Tree('E'),
-	fNode = new Tree('F'),
-	gNode = new Tree('G');
+
+
+var myTree = new TreeNode('A'),
+	bNode = new TreeNode('B'),
+	cNode = new TreeNode('C'),
+	dNode = new TreeNode('D'),
+	eNode = new TreeNode('E'),
+	fNode = new TreeNode('F'),
+	gNode = new TreeNode('G');
 
 myTree.children.push(bNode, cNode);
 bNode.children.push(dNode, eNode, fNode);
@@ -40,6 +42,7 @@ eNode.children.push(gNode);
 //   \
 //     C 
 
+console.log("-- expect node E --");
 console.log(myTree.breadthFirstSearch('E'));  
 // queue:  [ 'A' ]
 // queue:  [ 'B', 'C' ]
@@ -48,7 +51,7 @@ console.log(myTree.breadthFirstSearch('E'));
 // queue:  [ 'E', 'F' ]
 // { key: 'E', children: [ { key: 'G', children: [] } ] }
 
-
+console.log("-- expect node G --");
 console.log(myTree.breadthFirstSearch('G'));  
 // queue:  [ 'A' ]
 // queue:  [ 'B', 'C' ]
@@ -59,8 +62,9 @@ console.log(myTree.breadthFirstSearch('G'));
 // queue:  [ 'G' ]
 // { key: 'G', children: [] }
 
-console.log(myTree.breadthFirstSearch('H')); 
 
+console.log("-- expect null --");
+console.log(myTree.breadthFirstSearch('H')); 
 // queue:  [ 'A' ]
 // queue:  [ 'B', 'C' ]
 // queue:  [ 'C', 'D', 'E', 'F' ]
@@ -71,8 +75,7 @@ console.log(myTree.breadthFirstSearch('H'));
 // null
 
 
-
-
+console.log("-- expect array with nodes E and F --");
 console.log(myTree.breadthFirstSearchAll(function(node){
 	return node.key > 'D';
 }));
@@ -86,7 +89,7 @@ console.log(myTree.breadthFirstSearchAll(function(node){
 //   { key: 'F', children: [] } ]
 
 
-
+console.log("-- expect empty array --");
 console.log(myTree.breadthFirstSearchAll(function(node){
 	return node.username == "Bob";
 }));
@@ -98,8 +101,3 @@ console.log(myTree.breadthFirstSearchAll(function(node){
 // queue:  [ 'F', 'G' ]
 // queue:  [ 'G' ]
 // []
-
-
-
-
-
