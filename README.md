@@ -31,6 +31,8 @@ Breadth First Search spreads like a mold across the tree or graph, moving outwar
 1. How could you modify breadth first search to pick out a group of nodes based on some data characteristic instead of just the key? For instance, how could you use it to find all of the hex colors named by a particular user in the hex color tree from yesterday?  
 
 
+
+
 <!-- 
 
 

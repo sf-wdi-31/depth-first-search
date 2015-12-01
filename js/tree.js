@@ -1,61 +1,141 @@
-var CYOATree = function (firstSection){
-	this.head = firstSection;
+var TreeNode = function (key, children){
+	this.key = key; 	
+	this.children = children || [];	// an array, holds the TreeNodes that we can go to directly from here
 };
 
-
-CYOATree.prototype.findEarlyWin = function(){
-	// set up the queue of nodes to  check for happy ending
-	var queue = [{node: this.head, numDecisions: 0}]; 
-	// console.log("queue, ", queue)
+TreeNode.prototype.breadthFirstSearch = function(targetKey){
+	// set up the queue of nodes to check 
+	var queue = [this]; 
 	var current;
 	while (queue.length !== 0){
-		current = queue.shift(); // removes and returns first element of array
-		// check if current node is happy ending
-		if (current.node.happy_ending){
-			return current.numDecisions;
+		// print out key of each node in queue to help with debugging
+		console.log("queue: ", queue.map(function(node){
+			return node.key;
+		}));
+
+		current = queue.shift(); // remove and return first element of array
+
+		// check if current node key matches the target key
+		if (current.key == targetKey){
+			return current;
 		} else {
-			if (current.node.children){
-				for(var i=0; i<current.node.children.length; i++){
-					queue.push({node:current.node.children[i], numDecisions: current.numDecisions+1});
-				}
+			if (current.children){
+				queue = queue.concat(current.children);
 			}
 		}
 	}
-	// we've gone through the entire story tree, and there are no happy endings
-	// interviewees should ask what to do here
-	// we'll adopt a convention of returning false
-	return false;
+	// we've gone through the entire tree without finding the key
+	return null;
 };
 
-var CYOANode = function (storySection, choices){
-	this.data = storySection; 	// a string, the section of the story starting at this page
-	this.children = choices;	// an array, holds the CYOANodes that we can go to directly from here
+
+var myTree = new TreeNode('A'),
+	bNode = new TreeNode('B'),
+	cNode = new TreeNode('C'),
+	dNode = new TreeNode('D'),
+	eNode = new TreeNode('E'),
+	fNode = new TreeNode('F'),
+	gNode = new TreeNode('G');
+
+myTree.children.push(bNode, cNode);
+bNode.children.push(dNode, eNode, fNode);
+eNode.children.push(gNode);
+
+//          D 
+//        /
+//     B  -- E -- G
+//   /	  \
+// A        F
+//   \
+//     C 
+
+console.log(myTree.breadthFirstSearch('E'));  
+// queue:  [ 'A' ]
+// queue:  [ 'B', 'C' ]
+// queue:  [ 'C', 'D', 'E', 'F' ]
+// queue:  [ 'D', 'E', 'F' ]
+// queue:  [ 'E', 'F' ]
+// { key: 'E', children: [ { key: 'G', children: [] } ] }
+
+
+console.log(myTree.breadthFirstSearch('G'));  
+// queue:  [ 'A' ]
+// queue:  [ 'B', 'C' ]
+// queue:  [ 'C', 'D', 'E', 'F' ]
+// queue:  [ 'D', 'E', 'F' ]
+// queue:  [ 'E', 'F' ]
+// queue:  [ 'F', 'G' ]
+// queue:  [ 'G' ]
+// { key: 'G', children: [] }
+
+console.log(myTree.breadthFirstSearch('H')); 
+
+// queue:  [ 'A' ]
+// queue:  [ 'B', 'C' ]
+// queue:  [ 'C', 'D', 'E', 'F' ]
+// queue:  [ 'D', 'E', 'F' ]
+// queue:  [ 'E', 'F' ]
+// queue:  [ 'F', 'G' ]
+// queue:  [ 'G' ]
+// null
+
+
+
+
+// Return all nodes for which the selectionFunction returns true.
+TreeNode.prototype.breadthFirstSearchAll = function(selectionFunction){
+	// set up the queue of nodes to check 
+	var queue = [this]; 
+	// set up output array of nodes that match properties
+	var output = [];
+	var current;
+	while (queue.length !== 0){
+		// print out key of each node in queue to help with debugging
+		console.log("queue: ", queue.map(function(node){
+			return node.key;
+		}));
+
+		current = queue.shift(); // remove and return first element of array
+
+		// check if selectionFunction returns true for current node 
+		if (selectionFunction(current)){
+			output.push(current);
+		} else {
+			if (current.children){
+				queue = queue.concat(current.children);
+			}
+		}
+	}
+	return output;
 };
 
-//////////////////Testing
+console.log(myTree.breadthFirstSearchAll(function(node){
+	return node.key > 'D';
+}));
+// queue:  [ 'A' ]
+// queue:  [ 'B', 'C' ]
+// queue:  [ 'C', 'D', 'E', 'F' ]
+// queue:  [ 'D', 'E', 'F' ]
+// queue:  [ 'E', 'F' ]
+// queue:  [ 'F' ]
+// [ { key: 'E', children: [ [Object] ] },
+//   { key: 'F', children: [] } ]
 
-CYOANode.prototype.addChoice = function(choiceNode){
-	this.children.push(choiceNode);
-};
 
-var pg67 = new CYOANode("pg67 text -- Congratulations!", []);
-var pg13 = new CYOANode("pg13 text -- You have died.", []);
-var pg43 = new CYOANode("pg43 text", [pg67, pg13]);
-var pg89 = new CYOANode("pg89 text -- You have died.", []);
-var pg1 = new CYOANode("pg1 text -- Once upon a time...", [pg43, pg89]);
-var book = new CYOATree(pg1);
-// 	  89L
-// 	/ 
-// 1      67W
-// 	\ 	/
-// 	  43 
-// 		\
-// 	  	  13L
 
-console.log(book.findEarlyWin());  //2
+console.log(myTree.breadthFirstSearchAll(function(node){
+	return node.username == "Bob";
+}));
+// queue:  [ 'A' ]
+// queue:  [ 'B', 'C' ]
+// queue:  [ 'C', 'D', 'E', 'F' ]
+// queue:  [ 'D', 'E', 'F' ]
+// queue:  [ 'E', 'F' ]
+// queue:  [ 'F', 'G' ]
+// queue:  [ 'G' ]
+// []
 
-var loserBook = new CYOATree(pg13);
-console.log(loserBook.findEarlyWin());  // -1
 
-var immediateWinBook = new CYOATree(pg67);
-console.log(immediateWinBook.findEarlyWin()); // 0
+
+
+
