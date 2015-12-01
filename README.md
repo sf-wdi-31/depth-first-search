@@ -11,8 +11,6 @@ Breadth First Search spreads like a mold across the tree or graph, moving outwar
 ![breadth first search animation](https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif)
 
 
-
-
 ## Exercise: Breadth First Tree Search
 
 1. In English, describe how you would do breadth first search. Your algorithm should assume you have a tree data structure and can access each node's key, and each node's array of children. (Do not assume it's a binary search tree.)
