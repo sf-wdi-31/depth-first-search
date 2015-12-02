@@ -1,3 +1,7 @@
+// Note: To run only recursive version of depth first search tests from the Terminal 
+// use `node tree-solution.js recursive`.
+// For iterative only, use `node tree-solution.js iterative`.
+
 // This object type represents a tree
 // where each node has an array of children.
 
@@ -49,50 +53,19 @@ uNode.children.push(wNode);
 //   \
 //     S 
 
+
 console.log("\n-- expect node U --");
 console.log(myTree.depthFirstSearch('U'));  
-// -- expect node U --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// { key: 'U', children: [ { key: 'W', children: [] } ] }
+
 
 
 console.log("\n-- expect node W --");
 console.log(myTree.depthFirstSearch('W'));  
-// -- expect node W --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
-// { key: 'W', children: [] }
+
 
 
 console.log("\n-- expect null --");
 console.log(myTree.depthFirstSearch('Z')); 
-// -- expect null --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.' ]
-// stack:  [ 'Q., 'R.', 'T' ]
-// stack:  [ 'Q., 'R.', 'T.' ]
-// stack:  [ 'Q., 'R.' ]
-// stack:  [ 'Q. ]
-// null
+
 
 

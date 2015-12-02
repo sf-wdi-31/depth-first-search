@@ -5,6 +5,7 @@
 
 
 	```
+	Iterative:
 	set up a list of nodes to check
 	track whether we've visited/processed each one
 	start at the root, and say we haven't processed it yet
@@ -20,6 +21,19 @@
 
 	```
 
+	```
+	Recursive:
+	base case for any node is when the node has no children (leaf)
+		in this case, if the node's key isn't the target, we're done with it (return null or nil or None or whatever)
+
+	even if there are children, we should check whether the node's key is the target (if so, we're done! return node)
+
+	But the general recursive case is when the node isn't the one we're looking for and it does have children. In that case, we should 
+		- depth first search each of its children
+		- if a child finds a matching node, go ahead and return it
+		- if no child finds a matching node, return none or nil or whatever
+	```
+
 1. On the whiteboard, pseudocode a depth first search function. As usual, assume you have a tree data structure that allows the following operations:
 	
 	* given a tree/node `my_tree`, get the root of the tree with `my_tree`
@@ -29,20 +43,49 @@
 
 
 	```python
-	def depth_first_search(tree, target_key):
+
+	def depth_first_search(tree, targetKey) {
+		stack = [{"node": self, "visited": false}]
+
+		while stack.length != 0: 
+			# peek at top item in the stack
+			current = stack[-1]  # last thing in stack
+
+			# this might be the one we were looking for
+			if current["node"].key == targetKey:
+				return currentnode
+
+			# if this isn't target, continue with search
+			if current["visited"]:
+				stack.pop() # remove the last item from the stack
+			else:
+				current["visited"] = true
+				# add the node's children to the stack
+				stack = stack + current["node"].children
+	# if we haven't found it yet, it's not in this subtree
+	return None
+	```
+
+	```python
+	# recursive
+	def depthFirstSearch(tree, target_key):
+		# check if this is the target
 		if tree.key == target_key:
 			return tree
-		else if !tree.left && !tree.right
-			return None
-		else 
-			if tree.left
-				left_result = depth_first_search(tree.left, target_key)
-			else # tree must have a tree.right
-				right_result = depth_first_search(tree.right, target_key)
-			if 
 
-	end
+		# if this is not a leaf, search all subtrees
+		for child in tree.children:
+			subtree_result = depthFirstSearch(child, target_key)
+			# if a child subtree found soemthing, we can end early
+			# since we're only looking for one match right now
+			if subtree_result != None:
+				return subtree_result
+
+		# if none of the subtrees found anything or if this is a leaf
+		# (and since we know it's not a match)...
+		return None
 	```
+
 
 
 1. Copy the starter code in either `tree.js` or `tree.rb`.  You'll see these files now have blanks and informal "tests" for depth first search.  Fill in the depth first search function in one of these files with actual code code. Run `node tree.js` or `ruby tree.rb` to see the informal tests work on your file.

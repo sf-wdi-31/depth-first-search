@@ -78,45 +78,15 @@ u_node.children << w_node
 puts "\n-- expect node U --"
 u_result = my_tree.depth_first_search('U')
 p u_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# #<Tree:0x007fa95a96f108 @key="U", @children=[#<Tree:0x007fa95a96f018 @key="W", @children=[]>]>
+
 
 puts "\n-- expect node W --"
 w_result = my_tree.depth_first_search('W')
 p w_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# ["Q.", "R.", "T", "U.", "W"]
-# #<Tree:0x007fa95a96f018 @key="W", @children=[]>
 
 
 puts "\n-- expect nil -- "
 z_result = my_tree.depth_first_search('Z')
 p z_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# ["Q.", "R.", "T", "U.", "W"]
-# ["Q.", "R.", "T", "U.", "W."]
-# ["Q.", "R.", "T", "U."]
-# ["Q.", "R.", "T"]
-# ["Q.", "R.", "T."]
-# ["Q.", "R."]
-# ["Q."]
-# nil
+
 

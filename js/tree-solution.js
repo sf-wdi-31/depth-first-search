@@ -1,6 +1,10 @@
+// Note: To run only recursive version of depth first search tests from the Terminal 
+// use `node tree-solution.js recursive`.
+// For iterative only, use `node tree-solution.js iterative`.
+
+
 // This object type represents a tree
 // where each node has an array of children.
-
 var TreeNode = function (key, children){
 	this.key = key; 	
 	this.children = children || [];	// an array, holds the TreeNodes that we can go to directly from here
@@ -19,7 +23,7 @@ TreeNode.prototype.depthFirstSearch	= function(targetKey) {
 	};
 
 	while (stack.length !== 0) {
-		// print out key of each node in queue to help with debugging
+		// print out key of each node in stack to help with debugging
 		console.log("stack: ", stack.map(function(entry){
 			return entry.node.key + (entry.visited ? "." : "");
 		}));
@@ -38,6 +42,31 @@ TreeNode.prototype.depthFirstSearch	= function(targetKey) {
 	return null;
 };
 
+
+TreeNode.prototype.depthFirstSearchRecursive = function(target_key) {
+	// current node is this
+	console.log("processing ", this.key);
+	if (this.key == target_key){
+		return this;
+	}
+	var len = this.children.length;
+	var i = 0;
+	var childResult = null;
+
+	for (; i<len; i++) {
+		// recursively search each child
+		childResult = this.children[i].depthFirstSearchRecursive(target_key);
+		if (childResult){
+			// if child has a node matching the target, can return it
+			return childResult;
+		}
+	}
+
+	// if we reach this point without returning, 
+	// neither this node nor any in its subtree had the target key
+	console.log("finished ", this.key);
+	return null;
+};
 
 
 // Searches through all nodes of the tree, spreading 
@@ -118,50 +147,96 @@ uNode.children.push(wNode);
 //   \
 //     S 
 
-console.log("\n-- expect node U --");
-console.log(myTree.depthFirstSearchPath('U'));  
-// -- expect node U --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// { key: 'U', children: [ { key: 'W', children: [] } ] }
 
 
-console.log("\n-- expect node W --");
-console.log(myTree.depthFirstSearchPath('W'));  
-// -- expect node W --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
-// { key: 'W', children: [] }
+//************ ITERATIVE ****************//
+if (!process.argv[2] || process.argv[2] == "iterative") {
+	console.log("\n-- expect node U --");
+	console.log(myTree.depthFirstSearch('U'));  
+	// -- expect node U --
+	// stack:  [ 'Q' ]
+	// stack:  [ 'Q., 'R', 'S' ]
+	// stack:  [ 'Q., 'R', 'S.' ]
+	// stack:  [ 'Q., 'R' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U' ]
+	// { key: 'U', children: [ { key: 'W', children: [] } ] }
 
 
-console.log("\n-- expect null --");
-console.log(myTree.depthFirstSearchPath('Z')); 
-// -- expect null --
-// stack:  [ 'Q' ]
-// stack:  [ 'Q., 'R', 'S' ]
-// stack:  [ 'Q., 'R', 'S.' ]
-// stack:  [ 'Q., 'R' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
-// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.', 'W.' ]
-// stack:  [ 'Q., 'R.', 'T', 'U.' ]
-// stack:  [ 'Q., 'R.', 'T' ]
-// stack:  [ 'Q., 'R.', 'T.' ]
-// stack:  [ 'Q., 'R.' ]
-// stack:  [ 'Q. ]
-// null
+	console.log("\n-- expect node W --");
+	console.log(myTree.depthFirstSearch('W'));  
+	// -- expect node W --
+	// stack:  [ 'Q' ]
+	// stack:  [ 'Q., 'R', 'S' ]
+	// stack:  [ 'Q., 'R', 'S.' ]
+	// stack:  [ 'Q., 'R' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
+	// { key: 'W', children: [] }
 
 
+	console.log("\n-- expect null --");
+	console.log(myTree.depthFirstSearch('Z')); 
+	// -- expect null --
+	// stack:  [ 'Q' ]
+	// stack:  [ 'Q., 'R', 'S' ]
+	// stack:  [ 'Q., 'R', 'S.' ]
+	// stack:  [ 'Q., 'R' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U.', 'W.' ]
+	// stack:  [ 'Q., 'R.', 'T', 'U.' ]
+	// stack:  [ 'Q., 'R.', 'T' ]
+	// stack:  [ 'Q., 'R.', 'T.' ]
+	// stack:  [ 'Q., 'R.' ]
+	// stack:  [ 'Q. ]
+	// null
+}
+
+//*************RECURSIVE********************//
+if (!process.argv[2] || process.argv[2] == "recursive") {
+
+	console.log("\n-- expect node U --");
+	console.log(myTree.depthFirstSearchRecursive('U'));  
+	// processing  Q
+	// processing  R
+	// processing  T
+	// finished  T
+	// processing  U
+	// { key: 'U', children: [ { key: 'W', children: [] } ] }
+
+
+	console.log("\n-- expect node W --");
+	console.log(myTree.depthFirstSearchRecursive('W'));  
+	// processing  Q
+	// processing  R
+	// processing  T
+	// finished  T
+	// processing  U
+	// processing  W
+	// { key: 'W', children: [] }
+
+
+	console.log("\n-- expect null --");
+	console.log(myTree.depthFirstSearchRecursive('Z')); 
+	// processing  Q
+	// processing  R
+	// processing  T
+	// finished  T
+	// processing  U
+	// processing  W
+	// finished  W
+	// finished  U
+	// processing  V
+	// finished  V
+	// finished  R
+	// processing  S
+	// finished  S
+	// finished  Q
+	// null
+}
