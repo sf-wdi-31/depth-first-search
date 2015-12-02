@@ -40,65 +40,83 @@ class Tree
     nil
   end
 
+  ##
+  # Searches through tree for a single node whose key is equal to
+  # the +target_key+ param. Looks through nodes in a depth-first order,
+  # by following each path as deep as it can before backtracking.
+  # Returns nil if no such node is found.
+  def depth_first_search(target_key)
+    nil
+  end
+
 end
 
-my_tree = Tree.new('A')
-b_node = Tree.new('B')
-c_node = Tree.new('C')
-d_node = Tree.new('D')
-e_node = Tree.new('E')
-f_node = Tree.new('F')
-g_node = Tree.new('G')
 
-my_tree.children << b_node
-my_tree.children << c_node
-b_node.children << d_node
-b_node.children << e_node
-b_node.children << f_node
-e_node.children << g_node
+my_tree = Tree.new('Q')
+r_node = Tree.new('R')
+s_node = Tree.new('S')
+t_node = Tree.new('T')
+u_node = Tree.new('U')
+v_node = Tree.new('V')
+w_node = Tree.new('W')
 
-#          D 
+my_tree.children << r_node
+my_tree.children << s_node
+r_node.children << t_node
+r_node.children << u_node
+r_node.children << v_node
+u_node.children << w_node
+
+#          T 
 #        /
-#     B  -- E -- G
+#     R  -- U -- W
 #   /   \
-# A        F
+# Q        V
 #   \
-#     C 
+#     S 
 
+puts "\n-- expect node U --"
+u_result = my_tree.depth_first_search('U')
+p u_result
+# ["Q"]
+# ["Q.", "R", "S"]
+# ["Q.", "R", "S."]
+# ["Q.", "R"]
+# ["Q.", "R.", "T", "U", "V"]
+# ["Q.", "R.", "T", "U", "V."]
+# ["Q.", "R.", "T", "U"]
+# #<Tree:0x007fa95a96f108 @key="U", @children=[#<Tree:0x007fa95a96f018 @key="W", @children=[]>]>
 
-
-puts "\n-- expect node E --"
-e_result = my_tree.breadth_first_search('E')
-p e_result
-# ["A"]
-# ["B", "C"]
-# ["C", "D", "E", "F"]
-# ["D", "E", "F"]
-# ["E", "F"]
-# #<Tree:0x007fee51891dd0 @key="E", @children=[#<Tree:0x007fee51891ce0 @key="G", @children=[]>]>
-
-puts "\n-- expect node G --"
-g_result = my_tree.breadth_first_search('G')
-p g_result
-# ["A"]
-# ["B", "C"]
-# ["C", "D", "E", "F"]
-# ["D", "E", "F"]
-# ["E", "F"]
-# ["F", "G"]
-# ["G"]
-# #<Tree:0x007fe77c29dae0 @key="G", @children=[]>
+puts "\n-- expect node W --"
+w_result = my_tree.depth_first_search('W')
+p w_result
+# ["Q"]
+# ["Q.", "R", "S"]
+# ["Q.", "R", "S."]
+# ["Q.", "R"]
+# ["Q.", "R.", "T", "U", "V"]
+# ["Q.", "R.", "T", "U", "V."]
+# ["Q.", "R.", "T", "U"]
+# ["Q.", "R.", "T", "U.", "W"]
+# #<Tree:0x007fa95a96f018 @key="W", @children=[]>
 
 
 puts "\n-- expect nil -- "
-h_result = my_tree.breadth_first_search('H')
-p h_result
-# ["A"]
-# ["B", "C"]
-# ["C", "D", "E", "F"]
-# ["D", "E", "F"]
-# ["E", "F"]
-# ["F", "G"]
-# ["G"]
+z_result = my_tree.depth_first_search('Z')
+p z_result
+# ["Q"]
+# ["Q.", "R", "S"]
+# ["Q.", "R", "S."]
+# ["Q.", "R"]
+# ["Q.", "R.", "T", "U", "V"]
+# ["Q.", "R.", "T", "U", "V."]
+# ["Q.", "R.", "T", "U"]
+# ["Q.", "R.", "T", "U.", "W"]
+# ["Q.", "R.", "T", "U.", "W."]
+# ["Q.", "R.", "T", "U."]
+# ["Q.", "R.", "T"]
+# ["Q.", "R.", "T."]
+# ["Q.", "R."]
+# ["Q."]
 # nil
 

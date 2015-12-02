@@ -1,103 +1,98 @@
 // This object type represents a tree
 // where each node has an array of children.
 
-var Tree = function (key, children){
+var TreeNode = function (key, children){
 	this.key = key; 	
 	this.children = children || [];	// an array, holds the Trees that we can go to directly from here
+};
+
+// Searches through tree for a single node whose key is equal to
+// the +target_key+ param. Looks through nodes in a depth-first order,
+// by following each path as deep as it can before backtracking.
+// Returns null if no such node is found.
+TreeNode.prototype.depthFirstSearch	= function(targetKey) {
+	return null;
 };
 
 // Searches through all nodes of the tree, spreading 
 // outward from the root. Looks for any node with key equal
 // to the targetKey param. Returns null if no such node is found.
-Tree.prototype.breadthFirstSearch = function(targetKey){
+TreeNode.prototype.breadthFirstSearch = function(targetKey) {
 	return null;
 };
 
 
 // Returns an array containing all nodes for which 
 // the selectionFunction returns true.
-Tree.prototype.breadthFirstSearchAll = function(selectionFunction){
+TreeNode.prototype.breadthFirstSearchAll = function(selectionFunction){
 	return [];
 };
 
 
+var myTree = new TreeNode('Q'),
+	rNode = new TreeNode('R'),
+	sNode = new TreeNode('S'),
+	tNode = new TreeNode('T'),
+	uNode = new TreeNode('U'),
+	vNode = new TreeNode('V'),
+	wNode = new TreeNode('W');
 
-var myTree = new TreeNode('A'),
-	bNode = new TreeNode('B'),
-	cNode = new TreeNode('C'),
-	dNode = new TreeNode('D'),
-	eNode = new TreeNode('E'),
-	fNode = new TreeNode('F'),
-	gNode = new TreeNode('G');
+myTree.children.push(rNode, sNode);
+rNode.children.push(tNode, uNode, vNode);
+uNode.children.push(wNode);
 
-myTree.children.push(bNode, cNode);
-bNode.children.push(dNode, eNode, fNode);
-eNode.children.push(gNode);
-
-//          D 
+//          T 
 //        /
-//     B  -- E -- G
+//     R  -- U -- W
 //   /	  \
-// A        F
+// Q        V
 //   \
-//     C 
+//     S 
 
-console.log("-- expect node E --");
-console.log(myTree.breadthFirstSearch('E'));  
-// queue:  [ 'A' ]
-// queue:  [ 'B', 'C' ]
-// queue:  [ 'C', 'D', 'E', 'F' ]
-// queue:  [ 'D', 'E', 'F' ]
-// queue:  [ 'E', 'F' ]
-// { key: 'E', children: [ { key: 'G', children: [] } ] }
-
-console.log("-- expect node G --");
-console.log(myTree.breadthFirstSearch('G'));  
-// queue:  [ 'A' ]
-// queue:  [ 'B', 'C' ]
-// queue:  [ 'C', 'D', 'E', 'F' ]
-// queue:  [ 'D', 'E', 'F' ]
-// queue:  [ 'E', 'F' ]
-// queue:  [ 'F', 'G' ]
-// queue:  [ 'G' ]
-// { key: 'G', children: [] }
+console.log("\n-- expect node U --");
+console.log(myTree.depthFirstSearch('U'));  
+// -- expect node U --
+// stack:  [ 'Q' ]
+// stack:  [ 'Q., 'R', 'S' ]
+// stack:  [ 'Q., 'R', 'S.' ]
+// stack:  [ 'Q., 'R' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+// stack:  [ 'Q., 'R.', 'T', 'U' ]
+// { key: 'U', children: [ { key: 'W', children: [] } ] }
 
 
-console.log("-- expect null --");
-console.log(myTree.breadthFirstSearch('H')); 
-// queue:  [ 'A' ]
-// queue:  [ 'B', 'C' ]
-// queue:  [ 'C', 'D', 'E', 'F' ]
-// queue:  [ 'D', 'E', 'F' ]
-// queue:  [ 'E', 'F' ]
-// queue:  [ 'F', 'G' ]
-// queue:  [ 'G' ]
+console.log("\n-- expect node W --");
+console.log(myTree.depthFirstSearch('W'));  
+// -- expect node W --
+// stack:  [ 'Q' ]
+// stack:  [ 'Q., 'R', 'S' ]
+// stack:  [ 'Q., 'R', 'S.' ]
+// stack:  [ 'Q., 'R' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+// stack:  [ 'Q., 'R.', 'T', 'U' ]
+// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
+// { key: 'W', children: [] }
+
+
+console.log("\n-- expect null --");
+console.log(myTree.depthFirstSearch('Z')); 
+// -- expect null --
+// stack:  [ 'Q' ]
+// stack:  [ 'Q., 'R', 'S' ]
+// stack:  [ 'Q., 'R', 'S.' ]
+// stack:  [ 'Q., 'R' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V' ]
+// stack:  [ 'Q., 'R.', 'T', 'U', 'V.' ]
+// stack:  [ 'Q., 'R.', 'T', 'U' ]
+// stack:  [ 'Q., 'R.', 'T', 'U.', 'W' ]
+// stack:  [ 'Q., 'R.', 'T', 'U.', 'W.' ]
+// stack:  [ 'Q., 'R.', 'T', 'U.' ]
+// stack:  [ 'Q., 'R.', 'T' ]
+// stack:  [ 'Q., 'R.', 'T.' ]
+// stack:  [ 'Q., 'R.' ]
+// stack:  [ 'Q. ]
 // null
 
 
-console.log("-- expect array with nodes E and F --");
-console.log(myTree.breadthFirstSearchAll(function(node){
-	return node.key > 'D';
-}));
-// queue:  [ 'A' ]
-// queue:  [ 'B', 'C' ]
-// queue:  [ 'C', 'D', 'E', 'F' ]
-// queue:  [ 'D', 'E', 'F' ]
-// queue:  [ 'E', 'F' ]
-// queue:  [ 'F' ]
-// [ { key: 'E', children: [ [Object] ] },
-//   { key: 'F', children: [] } ]
-
-
-console.log("-- expect empty array --");
-console.log(myTree.breadthFirstSearchAll(function(node){
-	return node.username == "Bob";
-}));
-// queue:  [ 'A' ]
-// queue:  [ 'B', 'C' ]
-// queue:  [ 'C', 'D', 'E', 'F' ]
-// queue:  [ 'D', 'E', 'F' ]
-// queue:  [ 'E', 'F' ]
-// queue:  [ 'F', 'G' ]
-// queue:  [ 'G' ]
-// []

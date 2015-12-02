@@ -50,24 +50,6 @@
 	*See `tree-solution.js` or `tree-solution.rb`.*
 
 
-1. How would you modify depth first search to keep track of the entire path of nodes from the root to the target node you find?
-
-	*Keep a separate visited list that has extra information: the parent of each node. That way, you can trace back from your node to its parent, to its parent, and so on.*
-
 1. When would you use depth first search, and when would you use breadth first search?
 
 	*Depth first search is a good idea if your goal/target nodes are mostly near the bottom of the tree. Breadth first search is better if you might have goal/target nodes near the root but down any branch.
-
-1. How would you modify depth first search to work for a binary tree with `.left` and `.right` instead of `.children`?
-
-	Hint: Depth first search lends itself to recursive *or* iterative approaches.
-	
-	```
-	recursive:
-	start at the root
-		if it matches, we're done! (return node)
-	start depth first search again in its left subtree (if it has one)
-	start depth first search again its right subtree (if it has one)
-	if we've looked at left subtree and right subtree and not found key, it's not in the tree
-	``` 
-

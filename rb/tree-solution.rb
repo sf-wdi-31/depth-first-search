@@ -32,6 +32,11 @@ class Tree
     @children = []
   end
 
+  ##
+  # Searches through tree for a single node whose key is equal to
+  # the +target_key+ param. Looks through nodes in a depth-first order,
+  # by following each path as deep as it can before backtracking.
+  # Returns nil if no such node is found.
   def depth_first_search(target_key)
     stack = [{:node => self, :visited => false}]
     while !stack.empty?
@@ -66,20 +71,6 @@ class Tree
     nil
   end
 
-  # only works for bst
-  # def depth_first_search_recursive(tree=self, target_key)
-  #   if tree.key == target_key
-  #     return tree
-  #   end
-
-  #   left_result = tree.left ? depth_first_search_recursive(tree.left, target_key) : nil
-  #   if left_result
-  #     return left_result
-  #   end
-  #   right_result = tree.right ? depth_first_search_recursive(tree.right, target_key) : nil
-    
-  #   right_result
-  # end
 
   ##
   # Searches through all nodes of the tree, spreading 
@@ -177,49 +168,3 @@ p z_result
 # ["Q."]
 # nil
 
-
-
-puts "\n-- expect node U (recursive) --"
-u_result = my_tree.depth_first_search_recursive('U')
-p u_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# #<Tree:0x007fa95a96f108 @key="U", @children=[#<Tree:0x007fa95a96f018 @key="W", @children=[]>]>
-
-puts "\n-- expect node W --"
-w_result = my_tree.depth_first_search('W')
-p w_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# ["Q.", "R.", "T", "U.", "W"]
-# #<Tree:0x007fa95a96f018 @key="W", @children=[]>
-
-
-puts "\n-- expect nil -- "
-z_result = my_tree.depth_first_search('Z')
-p z_result
-# ["Q"]
-# ["Q.", "R", "S"]
-# ["Q.", "R", "S."]
-# ["Q.", "R"]
-# ["Q.", "R.", "T", "U", "V"]
-# ["Q.", "R.", "T", "U", "V."]
-# ["Q.", "R.", "T", "U"]
-# ["Q.", "R.", "T", "U.", "W"]
-# ["Q.", "R.", "T", "U.", "W."]
-# ["Q.", "R.", "T", "U."]
-# ["Q.", "R.", "T"]
-# ["Q.", "R.", "T."]
-# ["Q.", "R."]
-# ["Q."]
-# nil
