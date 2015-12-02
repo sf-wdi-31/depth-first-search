@@ -10,6 +10,8 @@ Depth First Search follows an "always go left" path like some people use to syst
 
 Breadth First Search used a queue (first in is first out) to keep track of which nodes to visit next.  Depth First Search, at least in its iterative form, uses a stack (first in is last out).
 
+Depth First Search can be done recursively, or iteratively with a stack. The iterative version translates more easily to graphs that might have loops (after you see both versions, think about why that is).
+
 
 ## Exercises: Depth First Tree Search
 
@@ -21,6 +23,8 @@ Breadth First Search used a queue (first in is first out) to keep track of which
 	* given a tree/node `my_tree`, get the root of the tree with `my_tree`
 	* given a tree/node, get the key of the node with `.key`
 	* given a tree/node, get the children of the node with `.children`
+
+	Once you finish your pseudocode, check it versus the pseudocode in [the solutions](solutions.md).
 
 
 1. Copy the starter code in either `tree.js` or `tree.rb`.  You'll see these files now have blanks and informal "tests" for depth first search.  Fill in the depth first search function in one of these files with actual code code. Run `node tree.js` or `ruby tree.rb` to see the informal tests work on your file.
