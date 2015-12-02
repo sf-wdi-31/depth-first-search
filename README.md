@@ -22,8 +22,6 @@ Breadth First Search used a queue (first in is first out) to keep track of which
 	* given a tree/node, get the key of the node with `.key`
 	* given a tree/node, get the children of the node with `.children`
 
-	Hint: Depth first search lends itself to recursive *or* iterative approaches. 
-
 
 1. Copy the starter code in either `tree.js` or `tree.rb`.  You'll see these files now have blanks and informal "tests" for depth first search.  Fill in the depth first search function in one of these files with actual code code. Run `node tree.js` or `ruby tree.rb` to see the informal tests work on your file.
 
@@ -33,4 +31,4 @@ Breadth First Search used a queue (first in is first out) to keep track of which
 1. When would you use depth first search, and when would you use breadth first search?
 
 
-1. How would you modify depth first search to work for a binary tree with `.left` and `.right` instead of `.children`?
+1. How would you modify depth first search to work for a binary tree with `.left` and `.right` instead of `.children`? Can you pseudocode a recursive approach?
