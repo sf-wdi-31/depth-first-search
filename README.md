@@ -30,5 +30,7 @@ Depth First Search can be done recursively, or iteratively with a stack. The ite
 1. Copy the starter code in either `tree.js` or `tree.rb`.  You'll see these files now have blanks and informal "tests" for depth first search.  Fill in the depth first search function in one of these files with actual code code. Run `node tree.js` or `ruby tree.rb` to see the informal tests work on your file.
 
 	Note: The Ruby solution only has an iterative version.  The JavaScript solution has an iterative and a recursive version. To see the output from only the recursive version in the Terminal, use `node tree-solution.js recursive`. For iterative only, use `node tree-solution.js iterative`. 
+	
+1. How would you use depth first search to print out all of the words in a trie?
 
 1. When would you use depth first search, and when would you use breadth first search?
