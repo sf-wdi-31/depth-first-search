@@ -56,12 +56,12 @@ PLEASE DO NOT CODE UNLESS A CHALLENGE SPECIFICALLY INSTRUCTS YOU TO
 
 1. Can you think of a way to modify the trie data structure you just created to store the same data with a shorter tree? 
 
-  *There are a few space-saving variants based on tries. One straightforward version, called a radix tree, merges chains of nodes that are their parent's only child -- each resulting node could be a single letter or a chunk of letters.*
+  *There are a few space-saving variants based on tries. One straightforward version, called a radix tree, merges chains of nodes that are their parent's only child -- each resulting node could be a single letter or a chunk of letters. For the example above, a radix tree with "hello, guvnuh would share the `H` and `E` nodes, then have a `LLO, GUVNAH` node as a child of the `E`.*
 
 
-1. A "min heap" is another abstract data structure often thought of as a type of binary tree. It has a few additional restrictions, including one called the "min heap property:" every node's key is less than the keys of its children. What is special about the root of a min heap?  
+1. A "min heap" is another abstract data structure often drawn as a type of binary tree. It has a few additional restrictions, including one called the "min heap property:" every node's key is less than the keys of its children. What is special about the root of a min heap?  
 
-  *The root node of a min heap is the minimum element!  There's a similar data structure called a "max heap".*
+  *The root node of a min heap is the minimum element!  There's a similar data structure called a "max heap". Heaps are awesome in their own right!*
 
 
 ### Binary Search Tree
