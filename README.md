@@ -62,9 +62,9 @@ Breadth-first search used a queue (first in is first out) to keep track of which
 
 	Note: The Ruby solution only has an iterative version.  The JavaScript solution has an iterative and a recursive version. To see the output from only the recursive version in the Terminal, use `node tree-solution.js recursive`. For iterative only, use `node tree-solution.js iterative`.
 
-1. A trie is a kind of tree that stores sequential data, with each item in the sequence as an edge of the tree.  A common example is storing words.  Here's an image from the [wikipedia page](https://en.wikipedia.org/wiki/Trie):
+1. A trie is a kind of tree that stores sequential data like words or phone numbers. Each item in the sequence is an edge of the tree, and some nodes are marked as the end of a sequence.  A common example is storing words.  Here's an example from the [wikipedia page](https://en.wikipedia.org/wiki/Trie), storing words with some extra numerical data:
 
-	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Trie_example.svg/500px-Trie_example.svg.png">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Trie_example.svg/500px-Trie_example.svg.png" width="">
 
   **How would you use depth-first search to print out all of the words in a trie?**
 
