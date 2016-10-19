@@ -114,15 +114,9 @@ Or, a recursive approach:
 
 1. A trie is a kind of tree that stores sequential data like words or phone numbers. Each item in the sequence is an edge of the tree, and some nodes are marked as the end of a sequence.  A common example is storing words.  Here's an example storing words:
 
-  <img src="(https://cloud.githubusercontent.com/assets/3254910/19540693/16236202-9616-11e6-93d3-5d54f94e8b5d.png" width="40%" alt="trie-1">
-  
 
+  <img src="https://cloud.githubusercontent.com/assets/3254910/19540693/16236202-9616-11e6-93d3-5d54f94e8b5d.png" width="40%" alt="trie">
 
-  <img src="https://cloud.githubusercontent.com/assets/3254910/19540635/b71423c8-9615-11e6-8a1b-984458ee0c1b.png" width="40%" alt="trie-2">
-  
-  
-
-
-  **How would you use depth-first search to print out all of the words in a trie?**
+  **How would you use depth-first traversal to print out all of the words in a trie?**
 
 1. When would you use depth-first traversal, and when would you use breadth first traversal?
