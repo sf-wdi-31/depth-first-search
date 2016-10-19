@@ -39,7 +39,7 @@ Depth-first traversal traverses (goes over) every node in a graph.  Depth-first 
 
 Depth-first search follows an "always go left" or "always go right" path like some people use to systematically solve mazes.
 
-![depth-first search animation](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
+<img alt="depth-first search animation" src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif" width="40%">
 
 Breadth-first search used a queue (first in is first out) to keep track of which nodes to visit next.  Depth-first search, in its iterative form, uses a stack (first in is last out).  Depth-first search can be done recursively, too. The iterative version translates more easily to graphs that might have looping paths (after you see both versions, think about why that is).
 
