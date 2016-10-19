@@ -60,38 +60,33 @@ Or, a recursive approach:
 
 1. If a node has no children (base case), just process the node itself.  
 
-2. If a node has children (recursive case), recursively traverse each child's subtree in a depth-first way.  When all of the children are finished, process the node. 
+2. If a node has children (recursive case), recursively traverse each child's subtree in a depth-first way.  When all of the children are finished, process the node.
 
 #### Check for Understanding
 
-1. Draw the queue at each step in breadth-first traversal for the tree below:
+1. Draw the stack at each step in depth-first traversal for the tree below:
 
   <img src="https://github.com/sf-wdi-31/trees/blob/master/images/labels.jpg" width="30%">
 
   <details><summary>click for answer</summary>
 
   ```
+	<- bottom   top ->
 	[D]
-	[B, F]      (dequeue D, enqueue its children)
-	[F, A, C]   (dequeue B, enqueue its children)
-	[A, C, E]   (dequeue F, enqueue its children)
-	[C, E]      (dequeue A, enqueue its children)
-	[E]         (dequeue C, enqueue its children)
-	[]          (dequeue E, enqueue its children)
+	[]					(pop D)
+	[B, F]      (push D's children)
+	[B]					(pop F)
+	[B, E]      (push F's children)
+	[B]         (pop E)
+	[B]   			(push E's children)
+	[]      		(pop B)
+	[A, C]      (push B's children)
+	[A]					(pop C)
+	[A]         (push C's children)
+	[]					(pop A)
+	[] 					(push A's children)
+	try to pop again - no more nodes!
   ```
-
-  Or, you could add the children starting at the "right" each time:
-
-  ```
-	[D]
-	[F, B]      (dequeue D, enqueue its children)
-	[B, E]      (dequeue F, enqueue its children)
-	[E, C, A]   (dequeue B, enqueue its children)
-	[C, A]      (dequeue E, enqueue its children)
-	[A]         (dequeue C, enqueue its children)
-	[]          (dequeue A, enqueue its children)
-  ```
-
   </details>
 
 1. What is the Big-O runtime complexity of depth-first traversal?
@@ -123,4 +118,4 @@ Or, a recursive approach:
 
   **How would you use depth-first search to print out all of the words in a trie?**
 
-1. When would you use depth-first search, and when would you use breadth first search?
+1. When would you use depth-first traversal, and when would you use breadth first traversal?

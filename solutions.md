@@ -6,16 +6,15 @@
 
 	```
 	Iterative:
-	set up a list of nodes to check
-	track whether we've visited/processed each one
-	start at the root, and say we haven't processed it yet
+	set up a stack of nodes to check
+	start with just root in the stack
 
-	for every node we visit/process:
-		if the node has been visited already, remove it from the stack
-		if the node hasn't been visited yet:
-			if the node's key matches the target key, we're done! (return node)
-			mark the node as visited in the stack
-			add the node's children to the top of the stack (end of the array)
+	for every node we visit:
+		pop the top node from the stack
+		if the node's key matches the target key:
+		  we're done! (return node)
+		otherwise:
+			add node's children onto the stack
 
 	once there are no more nodes in the stack, we're done
 
@@ -28,14 +27,14 @@
 
 	even if there are children, we should check whether the node's key is the target (if so, we're done! return node)
 
-	But the general recursive case is when the node isn't the one we're looking for and it does have children. In that case, we should 
+	But the general recursive case is when the node isn't the one we're looking for and it does have children. In that case, we should
 		- depth first search each of its children
 		- if a child finds a matching node, go ahead and return it
 		- if no child finds a matching node, return none or nil or whatever
 	```
 
 1. On the whiteboard, pseudocode a depth first search function. As usual, assume you have a tree data structure that allows the following operations:
-	
+
 	* given a tree/node `my_tree`, get the root of the tree with `my_tree`
 	* given a tree/node, get the key of the node with `.key`
 	* given a tree/node, get the children of the node with `.children`
@@ -47,7 +46,7 @@
 	def depth_first_search(tree, targetKey) {
 		stack = [{"node": self, "visited": false}]
 
-		while stack.length != 0: 
+		while stack.length != 0:
 			# peek at top item in the stack
 			current = stack[-1]  # last thing in stack
 

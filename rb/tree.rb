@@ -8,7 +8,7 @@ class Tree
   # reads the key of the tree's root
   attr_reader :key
 
-  ## 
+  ##
   # sets the key of the tree's root node
   # unless intended new key is nil
   # (to remove a node, set the entire node to nil)
@@ -25,19 +25,11 @@ class Tree
 
 
   ##
-  # Creates a new tree with the root node key specified by 
+  # Creates a new tree with the root node key specified by
   # the +key+ param as the @key for the instance
   def initialize(key)
     @key = key
     @children = []
-  end
-
-  ##
-  # Searches through all nodes of the tree, spreading 
-  # outward from the root. Looks for any node with key equal
-  # to the +target_key+ param. Returns nil if no such node is found.
-  def breadth_first_search(target_key)
-    nil
   end
 
   ##
@@ -67,13 +59,13 @@ r_node.children << u_node
 r_node.children << v_node
 u_node.children << w_node
 
-#          T 
+#          T
 #        /
 #     R  -- U -- W
 #   /   \
 # Q        V
 #   \
-#     S 
+#     S
 
 puts "\n-- expect node U --"
 u_result = my_tree.depth_first_search('U')
@@ -88,5 +80,3 @@ p w_result
 puts "\n-- expect nil -- "
 z_result = my_tree.depth_first_search('Z')
 p z_result
-
-
