@@ -43,8 +43,63 @@ Depth-first search follows an "always go left" or "always go right" path like so
 
 Breadth-first search used a queue (first in is first out) to keep track of which nodes to visit next.  Depth-first search, in its iterative form, uses a stack (first in is last out).  Depth-first search can be done recursively, too. The iterative version translates more easily to graphs that might have looping paths (after you see both versions, think about why that is).
 
+### Depth-first Traversal
 
-## Exercises: Depth First Tree Search
+Here's a rundown of depth-first tree traversal:
+
+1. Set up a stack to track which nodes to visit.
+
+1. Add the root to the stack.
+
+1. Until the stack is empty, process the top node in the stack with the following steps:
+	- pop the node from the top of the stack
+	- push the node's children onto the top of the stack
+	- do whatever additional processing you'd like!
+
+Or, a recursive approach:
+
+1. If a node has no children (base case), just process the node itself.  
+
+2. If a node has children (recursive case), recursively traverse each child's subtree in a depth-first way.  When all of the children are finished, process the node. 
+
+#### Check for Understanding
+
+1. Draw the queue at each step in breadth-first traversal for the tree below:
+
+  <img src="https://github.com/sf-wdi-31/trees/blob/master/images/labels.jpg" width="30%">
+
+  <details><summary>click for answer</summary>
+
+  ```
+	[D]
+	[B, F]      (dequeue D, enqueue its children)
+	[F, A, C]   (dequeue B, enqueue its children)
+	[A, C, E]   (dequeue F, enqueue its children)
+	[C, E]      (dequeue A, enqueue its children)
+	[E]         (dequeue C, enqueue its children)
+	[]          (dequeue E, enqueue its children)
+  ```
+
+  Or, you could add the children starting at the "right" each time:
+
+  ```
+	[D]
+	[F, B]      (dequeue D, enqueue its children)
+	[B, E]      (dequeue F, enqueue its children)
+	[E, C, A]   (dequeue B, enqueue its children)
+	[C, A]      (dequeue E, enqueue its children)
+	[A]         (dequeue C, enqueue its children)
+	[]          (dequeue A, enqueue its children)
+  ```
+
+  </details>
+
+1. What is the Big-O runtime complexity of depth-first traversal?
+
+
+
+
+## Exercises: Depth-first Tree Search
 
 1. In English, describe how you would use depth-first search to determine whether any node in a tree has a given key. Your algorithm should assume you have a tree data structure and that you can access each node's key its array of children. (Do not assume it's a binary search tree.) You should also assume you're given a target key to match.
 
