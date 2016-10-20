@@ -44,23 +44,19 @@
 	```python
 
 	def depth_first_search(tree, targetKey) {
-		stack = [{"node": self, "visited": false}]
+		stack = [self]
 
 		while stack.length != 0:
 			# peek at top item in the stack
 			current = stack[-1]  # last thing in stack
 
 			# this might be the one we were looking for
-			if current["node"].key == targetKey:
+			if current.key == targetKey:
 				return currentnode
 
 			# if this isn't target, continue with search
-			if current["visited"]:
-				stack.pop() # remove the last item from the stack
-			else:
-				current["visited"] = true
-				# add the node's children to the stack
-				stack = stack + current["node"].children
+			stack.pop() # remove the last item from the stack
+			stack = stack + current.children
 	# if we haven't found it yet, it's not in this subtree
 	return None
 	```
