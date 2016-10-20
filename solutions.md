@@ -44,7 +44,7 @@
 	```python
 
 	def depth_first_search(tree, targetKey) {
-		stack = [self]
+		stack = [tree]
 
 		while stack.length != 0:
 			# peek at top item in the stack
@@ -52,12 +52,12 @@
 
 			# this might be the one we were looking for
 			if current.key == targetKey:
-				return currentnode
+				return current
 
 			# if this isn't target, continue with search
 			stack = stack + current.children
-	# if we haven't found it yet, it's not in this subtree
-	return None
+		# if we haven't found it yet, it's not in this subtree
+		return None
 	```
 
 	```python
